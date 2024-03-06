@@ -1,5 +1,4 @@
 import argparse
-import math
 
 from AnnuityLoan import AnnuityLoan
 from DifferentiatedLoan import DifferentiatedLoan
