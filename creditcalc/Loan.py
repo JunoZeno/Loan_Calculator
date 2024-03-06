@@ -2,24 +2,26 @@ import math
 
 
 class Loan:
-    def __init__(self, loan_amount, calculation_option):
+    def __init__(self, loan_amount, loan_type):
+        # loan_amount/principal
         self.loan_amount: int = loan_amount
-        self.calculation_option: str = calculation_option
-
-        self.desired_monthly_payment_amount: int = None  # private
-        self.calculated_repayment_period: int = None  # private
-
-        self.desired_repayment_period: int = None  # private
-        self.calculated_monthly_payment_amount: int = None  # private
-        self.final_monthly_payment: int = None  # private
+        # loan_type
+        self.calculation_option: str = loan_type
+        # interest
+        self.interest: float = None
+        # monthly payment amount
+        self.desired_monthly_payment_amount: int = None
+        self.calculated_monthly_payment_amount: int = None
+        self.final_monthly_payment: int = None
+        # repayment period
+        self.desired_repayment_period: int = None
+        self.calculated_repayment_period: int = None
 
     def process_loan_query_choice(self):
         if self.calculation_option == "m":
             self.calculate_monthly_payment()
-
         elif self.calculation_option == "p":
             self.calculate_repayment_period_in_months()
-
         else:
             print("Invalid selection. Please enter either m or p")
 
@@ -44,3 +46,7 @@ class Loan:
             print(f'\nIt will take {self.calculated_monthly_payment_amount} months to repay the loan')
         else:
             print(f'\nIt will take {self.calculated_monthly_payment_amount} month to repay the loan')
+
+    def _calculate_nominal_interest(self):
+        nominal_interest = self.interest / (12 * 100)
+        return nominal_interest
